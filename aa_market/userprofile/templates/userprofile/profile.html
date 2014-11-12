@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container" role="main">
+    <h1>Characters</h1>
+    {% if user and not user.is_anonymous %}
+        <div class="row">
+            {% for c in character_list %}
+                <div class="col-md-4">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">{{c.character_name}} @ {{c.server | title}}<span class="pull-right">
+                            <a href="{% url 'userprofile:delete_character' %}{{c.character_name}}" class="btn btn-xs btn-danger" role="button">Delete</a></span></h3>
+                        </div>
+
+                        <div class="panel-body">
+                            <table class="table table-striped table-condensed">
+                                <tbody>
+                                    {% for p in c.professions %}
+                                    <tr>
+                                        <td>{{p.profession | title }}</td>
+                                        <td>{{p.skill}}</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                            <p><a href="{% url 'workorder:add_profession' %}{{c.character_name}}" class="btn btn-xs btn-success" role="button">Add Profession</a>
+                            <a href="{% url 'workorder:delete_profession' %}{{c.character_name}}" class="btn btn-xs btn-danger" role="button">Delete Profession</a></p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    <p><a href="{% url 'userprofile:add_character' %}" class="btn btn-success" role="button">Add Character</a></p>
+    {% endif %}
+</div>
+{% endblock %}
+

@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container" role="main">
+    <h1>Notifications</h1>
+    {% if user and not user.is_anonymous %}
+        {% if notification_list or guildinvite_list %}
+            {% for n in notification_list %}
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">{{n.subject}}<span class="pull-right">
+                            <a href="{% url 'notifications:delete_notification' %}{{n.id}}" class="btn btn-xs btn-danger" role="button">Delete</a></span></h3>
+                        </div>
+
+                        <div class="panel-body">
+                            {{n.text}}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+            {% for gi in guildinvite_list %}
+                <div class="col-md-12">
+                    <div class="panel panel-success">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Guild Invite<span class="pull-right">
+                            <a href="{% url 'notifications:guildinvite_response' %}accept/{{gi.id}}" class="btn btn-xs btn-success" role="button">Accept</a>
+                            <a href="{% url 'notifications:guildinvite_response' %}decline/{{gi.id}}" class="btn btn-xs btn-danger" role="button">Decline</a></span></h3>
+                        </div>
+
+                        <div class="panel-body">
+                            {{gi.guild.guild_name}} has invited you to join their guild!
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+        <div class="alert alert-success" role="alert">
+            <strong>Success! </strong>Your inbox is empty!
+        </div>
+        {% endif %}
+    {% endif %}
+</div>
+{% endblock %}
+

@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container" role="main">
+    <h1>Third-party authentication demo</h1>
+    <div class="well">
+        {% if user and not user.is_anonymous %}
+        Hello {{ user }}
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+

@@ -1,0 +1,19 @@
+<html>
+<head>
+    <!-- Bootstrap core CSS -->
+    <link href="{{STATIC_URL}}css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap theme -->
+    <link href="{{STATIC_URL}}css/bootstrap-theme.min.css" rel="stylesheet">
+
+    <link href="{{STATIC_URL}}css/theme.css" rel="stylesheet">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script type="text/javascript" src="{{STATIC_URL}}js/bootstrap.min.js"></script>
+
+</head>
+{% include "navbar.html" %}
+<body role="document">
+{% block content %}
+{% endblock %}
+</body>
+</html>

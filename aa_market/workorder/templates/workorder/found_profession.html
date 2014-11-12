@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container" role="main">
+    <h1>Found Worker - {{results.0.profession | title }}</h1>
+
+    {% if error %}
+        <div class="alert alert-danger" role="alert">
+            <strong>Error: </strong> {{ error }}
+        </div>
+    {% endif %}
+
+    {% if not error %}
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Character</th>
+                    <th>Server</th>
+                    <th>Skill Level</th>
+                </tr>
+            </thead>
+
+            <tbody>
+            {% for i in results %}
+                <tr>
+                    <td>{{i.character.character_name}}</td>
+                    <td>{{i.character.server | title}}</td>
+                    <td>{{i.skill}}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container" role="main">
+    {% if error %}
+        <div class="alert alert-danger" role="alert">
+            <strong>Error: </strong> {{ error }}
+        </div>
+    {% endif %}
+
+    {% if not error %}
+        <div class="col-md-6 col-md-offset-3">
+            <div class="panel panel-danger">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Guild Kick</h3>
+                </div>
+
+                <div class="panel-body">
+                    Removed {{target}} from the guild.
+                </div>
+            </div>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

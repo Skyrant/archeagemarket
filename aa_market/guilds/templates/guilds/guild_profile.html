@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container" role="main">
+    {% if error %}
+        <div class="alert alert-danger" role="alert">
+            <strong>Error: </strong> {{ error }}
+        </div>
+    {% endif %}
+
+    {% if not error %}
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>User</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            {% for u in members %}
+                <tr>
+                    <td>{{u.user}}
+                        <span class="pull-right">
+                            {% if is_officer %}
+                                <a href="{% url 'guilds:promote' %}{{u.user}}" class="btn btn-xs btn-success" role="button">Promote</a>
+                                <a href="{% url 'guilds:remove_from_guild' %}{{u.user}}" class="btn btn-xs btn-danger" role="button">Kick</a>
+                            {% endif %}
+                        </span>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+</div>
+{% endblock %}

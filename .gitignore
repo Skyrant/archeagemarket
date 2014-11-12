@@ -1,0 +1,5 @@
+.idea/*
+*.pyc
+venv/*
+*.sqlite3
+*.cfg
